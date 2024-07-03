@@ -9,10 +9,23 @@ module.exports = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        QP_colors: {
+          // primary: "#c3002f",
+          // secondary: "#191D23",
+          accent: "#307777",
+          neutral: "#191D23",
+        },
+      },
+      "dark",
+      "cupcake",
+    ],
+  },
+  plugins: [require("daisyui")],
 };
