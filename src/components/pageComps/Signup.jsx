@@ -8,10 +8,13 @@ import PasswordInput from "../inputComps/PasswordInput";
 import DoBInput from "../inputComps/DoBInput";
 import PhoneInput from "../inputComps/PhoneInput";
 import SelectInput from "../inputComps/SelectInput";
+import { useAppSelector } from "@/redux/store";
 
 export default function Signup() {
   const router = useRouter();
+  const { auth } = useAppSelector((state) => state.authReducer);
 
+  // console.log("user:", auth);
   const {
     register,
     handleSubmit,
@@ -20,8 +23,21 @@ export default function Signup() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
+    // console.log(data);
+    fetch("https://quantumpossibilities.eu:82/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success(data?.message ?? "Registration successfull");
+        router.push("/signin");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -49,7 +65,7 @@ export default function Signup() {
             <div className="text-neutral flex flex-col gap-2 mt-4">
               <div className="flex items-start gap-2">
                 <TextInput
-                  name="firstname"
+                  name="first_name"
                   label="First Name"
                   type="text"
                   placeholder="First name"
@@ -57,7 +73,7 @@ export default function Signup() {
                   errors={errors?.firstname}
                 />
                 <TextInput
-                  name="lastname"
+                  name="last_name"
                   label="Last Name"
                   type="text"
                   placeholder="Last name"
@@ -74,10 +90,7 @@ export default function Signup() {
                 errors={errors?.email}
               />
               <PasswordInput register={register} errors={errors?.password} />
-              <DoBInput
-                register={register}
-                errors={errors?.bDate?.date ?? errors?.bDate?.month ?? errors?.bDate?.year}
-              />
+              <DoBInput register={register} errors={errors?.month ?? errors?.day ?? errors?.year} />
               <PhoneInput
                 register={register}
                 errors={errors?.phone?.country ?? errors?.phone?.number}
@@ -96,7 +109,10 @@ export default function Signup() {
                 className="checkbox checkbox-accent checkbox-xs border-accent rounded-sm"
               />
               <span className="text-xs">
-                I accept the <span className="text-accent font-medium">Terms and Conditions</span>{" "}
+                I accept the{" "}
+                <span className="text-accent font-medium hover:underline">
+                  Terms and Conditions
+                </span>{" "}
                 of the website
               </span>
             </label>

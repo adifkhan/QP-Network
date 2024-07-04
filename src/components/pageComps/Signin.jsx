@@ -5,9 +5,13 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import TextInput from "../inputComps/TextInput";
 import PasswordInput from "../inputComps/PasswordInput";
+import { useDispatch } from "react-redux";
+import { setAuth } from "@/redux/features/authSlice";
+import { toast } from "react-toastify";
 
 export default function Signin() {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -17,8 +21,22 @@ export default function Signin() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
+    fetch("https://quantumpossibilities.eu:82/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        // accessToken refreshToken message
+        toast.success(data?.message);
+        dispatch(setAuth(data?.user));
+        router.push("/");
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

@@ -8,7 +8,7 @@ export default function PhoneInput({ register, errors }) {
         <select
           defaultValue="US"
           className=" w-14 min-h-10 h-10 max-w-xs bg-transparent focus:outline-none -mx-2"
-          {...register("phone.country", { required: "Country Code is required" })}
+          {...register("countryCode", { required: "Country Code is required" })}
         >
           <option value="US">US</option>
           {countryCode.map((code) => (
@@ -21,7 +21,7 @@ export default function PhoneInput({ register, errors }) {
           type="text"
           className="grow"
           placeholder="+1 (555) 000-0000"
-          {...register("phone.number", {
+          {...register("phone", {
             required: "phone number is required",
           })}
         />

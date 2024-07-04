@@ -8,7 +8,7 @@ export default function DoBInput({ register, errors }) {
         <select
           defaultValue=""
           className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md"
-          {...register("bDate.date", { required: "Date is required" })}
+          {...register("month", { required: "month is required" })}
         >
           <option disabled value="">
             MM
@@ -22,7 +22,7 @@ export default function DoBInput({ register, errors }) {
         <select
           defaultValue=""
           className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md"
-          {...register("bDate.month", { required: "Month is required" })}
+          {...register("day", { required: "day is required" })}
         >
           <option disabled value="">
             DD
@@ -36,7 +36,7 @@ export default function DoBInput({ register, errors }) {
         <select
           defaultValue=""
           className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md"
-          {...register("bDate.year", { required: "Year is required" })}
+          {...register("year", { required: "year is required" })}
         >
           <option disabled value="">
             YYYY
@@ -54,11 +54,63 @@ export default function DoBInput({ register, errors }) {
 }
 
 const date = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
-  28, 29, 30, 31,
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20",
+  "21",
+  "22",
+  "23",
+  "24",
+  "25",
+  "26",
+  "27",
+  "28",
+  "29",
+  "30",
+  "31",
 ];
-const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const month = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 const year = [
-  2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
-  2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024,
+  "2000",
+  "2001",
+  "2002",
+  "2003",
+  "2004",
+  "2005",
+  "2006",
+  "2007",
+  "2008",
+  "2009",
+  "2010",
+  "2011",
+  "2012",
+  "2013",
+  "2014",
+  "2015",
+  "2016",
+  "2017",
+  "2018",
+  "2019",
+  "2020",
+  "2021",
+  "2022",
+  "2023",
+  "2024",
 ];
