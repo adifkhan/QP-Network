@@ -12,9 +12,9 @@ export default function SelectInput({ name, label, options, register, errors }) 
         <option disabled value="">
           Choose {name}
         </option>
-        {options?.map((option) => (
-          <option key={option} value={option} className="capitalize">
-            {option}
+        {options?.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>

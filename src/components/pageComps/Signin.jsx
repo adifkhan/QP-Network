@@ -17,7 +17,6 @@ export default function Signin() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
 
   const onSubmit = (data) => {
@@ -32,15 +31,23 @@ export default function Signin() {
       .then((data) => {
         // console.log(data);
         // accessToken refreshToken message
-        toast.success(data?.message);
-        dispatch(setAuth(data?.user));
-        router.push("/");
+        if (data.status === 200) {
+          localStorage.setItem("access_token", data?.accessToken);
+          toast.success(data?.message);
+          dispatch(setAuth(data?.user));
+          router.push("/");
+        } else {
+          toast.error(data?.message);
+        }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        toast.error("something went wrong");
+      });
   };
 
   return (
-    <div className="flex gap-20 items-center bg-[#0b3243] min-h-screen p-20">
+    <main className="flex gap-20 items-center bg-[#0b3243] min-h-screen p-20">
       <section className="text-white">
         <h2 className="text-[50px] font-semibold">
           Welcome to the first decentralised Social Network in the world
@@ -105,6 +112,6 @@ export default function Signin() {
           </p>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

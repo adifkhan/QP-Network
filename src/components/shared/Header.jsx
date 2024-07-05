@@ -11,13 +11,19 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { RiMessengerFill } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { AiFillBell } from "react-icons/ai";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header({ userMenuOpen, setUserMenuOpen }) {
+  const router = useRouter();
   const pathname = usePathname();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    router.push("/signin");
+  };
   return (
     <div
-      className="flex items-center gap-2 justify-between h-14 px-4 shadow-md"
+      className="flex items-center gap-2 justify-between h-14 px-4 bg-white shadow-md sticky top-0 right-0 left-0 z-[1000]"
       onClick={() => {
         setUserMenuOpen(false);
       }}
@@ -25,7 +31,7 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
       <section className="w-[80%] flex items-center gap-3">
         <Image src={"/QP-network.png"} width="35" height="35" alt="QP Network" />
         <div className="flex items-center gap-2 px-2 py-1 bg-[#F0F2F5] rounded-full text-neutral">
-          <IoSearch className="" />
+          <IoSearch />
           <input type="text" placeholder="search" className="bg-transparent focus:outline-none" />
         </div>
       </section>
@@ -68,7 +74,7 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
             }}
             className="cursor-pointer"
           >
-            <Image src={"/QP-network.png"} width="30" height="30" alt="QP Network" />
+            <Image src={"/james_rodigan.png"} width="30" height="30" alt="QP Network" />
             <div className="rounded-full bg-gray-300 absolute right-0 bottom-0">
               <IoIosArrowDown size={14} color="#191D23" />
             </div>
@@ -81,7 +87,9 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
             <ul className="flex flex-col gap-3">
               <li className="font-semibold cursor-pointer hover:text-accent">Profile</li>
               <li className="font-semibold cursor-pointer hover:text-accent">Setting</li>
-              <li className="font-semibold cursor-pointer hover:text-accent">Logout</li>
+              <li onClick={handleLogout} className="font-semibold cursor-pointer hover:text-accent">
+                Logout
+              </li>
             </ul>
           </div>
         </div>

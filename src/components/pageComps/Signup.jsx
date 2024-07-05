@@ -8,18 +8,17 @@ import PasswordInput from "../inputComps/PasswordInput";
 import DoBInput from "../inputComps/DoBInput";
 import PhoneInput from "../inputComps/PhoneInput";
 import SelectInput from "../inputComps/SelectInput";
-import { useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { setAuth } from "@/redux/features/authSlice";
+import { toast } from "react-toastify";
 
 export default function Signup() {
   const router = useRouter();
-  const { auth } = useAppSelector((state) => state.authReducer);
-
-  // console.log("user:", auth);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
 
   const onSubmit = (data) => {
@@ -33,15 +32,24 @@ export default function Signup() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        toast.success(data?.message ?? "Registration successfull");
-        router.push("/signin");
+        // console.log(data);
+        if (data.status === 200) {
+          localStorage.setItem("access_token", data?.accessToken);
+          toast.success(data?.message);
+          dispatch(setAuth(data?.user));
+          router.push("/");
+        } else {
+          toast.error(data?.error);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error("something went wrong");
+      });
   };
 
   return (
-    <div className="flex gap-20 items-start bg-[#0b3243] min-h-screen p-20">
+    <main className="flex gap-20 items-start bg-[#0b3243] min-h-screen p-20">
       <section className="text-white mt-28">
         <h2 className="text-[50px] font-semibold">
           Welcome to the first decentralised Social Network in the world
@@ -100,7 +108,11 @@ export default function Signup() {
                 label="Your Gender"
                 register={register}
                 errors={errors?.gender}
-                options={["male", "female", "custom"]}
+                options={[
+                  { label: "Male", value: "65018b21577b4590853ef574" },
+                  { label: "Female", value: "65018b21577b4590853ef574" },
+                  { label: "Custom", value: "65018b21577b4590853ef574" },
+                ]}
               />
             </div>
             <label className="cursor-pointer flex items-center gap-2 text-neutral mt-2">
@@ -137,6 +149,6 @@ export default function Signup() {
           </p>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

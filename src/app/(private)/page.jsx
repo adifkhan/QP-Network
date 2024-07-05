@@ -1,10 +1,5 @@
-"use client";
-
-import { useAppSelector } from "@/redux/store";
+import Newsfeed from "@/components/pageComps/Newsfeed";
 
 export default function Home() {
-  const { auth } = useAppSelector((state) => state.authReducer);
-
-  // console.log("user:", auth);
-  return <main>Quantum Possiblities private layout</main>;
+  return <Newsfeed />;
 }
