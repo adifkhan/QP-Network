@@ -8,9 +8,11 @@ import PasswordInput from "../inputComps/PasswordInput";
 import { useDispatch } from "react-redux";
 import { setAuth } from "@/redux/features/authSlice";
 import { toast } from "react-toastify";
+import Cookies from "universal-cookie";
 
 export default function Signin() {
   const router = useRouter();
+  const cookies = new Cookies();
   const dispatch = useDispatch();
 
   const {
@@ -32,7 +34,7 @@ export default function Signin() {
         // console.log(data);
         // accessToken refreshToken message
         if (data.status === 200) {
-          localStorage.setItem("access_token", data?.accessToken);
+          cookies.set("access_token", data?.accessToken, { maxAge: 604800, path: "/" });
           toast.success(data?.message);
           dispatch(setAuth(data?.user));
           router.push("/");

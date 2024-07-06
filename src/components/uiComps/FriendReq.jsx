@@ -18,7 +18,7 @@ export default function FriendReq() {
           {suggestions?.slice(10, 13)?.map((person, index) => (
             <div key={index} className="flex items-center justify-between gap-2">
               <div className="w-10 h-10 bg-gray-300 rounded-full">
-                <Image width={40} height={40} src={"/friend_req.png"} alt="people" />
+                <Image width={40} height={40} src={"/avatar/friend_req.png"} alt="people" />
               </div>
               <div className="grow flex flex-col gap-2">
                 <div className="flex items-center justify-between">

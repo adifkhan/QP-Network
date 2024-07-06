@@ -9,18 +9,22 @@ import { FaUsersViewfinder } from "react-icons/fa6";
 import { BsBox2 } from "react-icons/bs";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { RiMessengerFill } from "react-icons/ri";
-import { IoIosArrowDown } from "react-icons/io";
-import { AiFillBell } from "react-icons/ai";
+import { IoIosArrowDown, IoMdLogOut } from "react-icons/io";
+import { AiFillBell, AiOutlineSetting } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
+import { FaRegUserCircle } from "react-icons/fa";
+import Cookies from "universal-cookie";
 
 export default function Header({ userMenuOpen, setUserMenuOpen }) {
   const router = useRouter();
+  const cookies = new Cookies();
   const pathname = usePathname();
 
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
+    cookies.remove("access_token");
     router.push("/signin");
   };
+  
   return (
     <div
       className="flex items-center gap-2 justify-between h-14 px-4 bg-white shadow-md sticky top-0 right-0 left-0 z-[1000]"
@@ -74,7 +78,7 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
             }}
             className="cursor-pointer"
           >
-            <Image src={"/james_rodigan.png"} width="30" height="30" alt="QP Network" />
+            <Image src={"/avatar/james_rodigan.png"} width="30" height="30" alt="QP Network" />
             <div className="rounded-full bg-gray-300 absolute right-0 bottom-0">
               <IoIosArrowDown size={14} color="#191D23" />
             </div>
@@ -82,12 +86,20 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
           <div
             className={`${
               userMenuOpen ? "block" : "hidden"
-            } text-neutral px-8 py-4 rounded-md border-[1px] bg-gray-200 shadow-md absolute right-0 top-[44px]`}
+            } text-neutral p-4 rounded-md bg-white shadow-lg absolute right-0 top-[45px]`}
           >
-            <ul className="flex flex-col gap-3">
-              <li className="font-semibold cursor-pointer hover:text-accent">Profile</li>
-              <li className="font-semibold cursor-pointer hover:text-accent">Setting</li>
-              <li onClick={handleLogout} className="font-semibold cursor-pointer hover:text-accent">
+            <ul className="flex flex-col gap-4 w-[150px] py-2">
+              <li className="flex items-center gap-2 font-semibold pl-4 cursor-pointer hover:text-accent">
+                <FaRegUserCircle /> Profile
+              </li>
+              <li className="flex items-center gap-2 font-semibold pl-4 cursor-pointer hover:text-accent">
+                <AiOutlineSetting /> Setting
+              </li>
+              <li
+                onClick={handleLogout}
+                className="flex items-center gap-2 font-semibold pl-4 cursor-pointer hover:text-accent"
+              >
+                <IoMdLogOut />
                 Logout
               </li>
             </ul>

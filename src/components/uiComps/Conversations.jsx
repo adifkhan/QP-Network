@@ -12,7 +12,7 @@ export default function Conversations() {
       <div className="mt-4 flex flex-col gap-3 ">
         <div className="flex items-center  gap-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full">
-            <Image width={30} height={30} src={"/contact.png"} alt="people" />
+            <Image width={30} height={30} src={"/avatar/contact.png"} alt="people" />
           </div>
           <p className="grow text-sm font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
             3 Idiots
@@ -20,7 +20,7 @@ export default function Conversations() {
         </div>
         <div className="flex items-center  gap-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full">
-            <Image width={30} height={30} src={"/james_rodigan.png"} alt="people" />
+            <Image width={30} height={30} src={"/avatar/james_rodigan.png"} alt="people" />
           </div>
           <p className="grow text-sm font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
             NZS Batch 16
@@ -28,13 +28,13 @@ export default function Conversations() {
         </div>
         <div className="flex items-center  gap-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full">
-            <Image width={30} height={30} src={"/friend_req.png"} alt="people" />
+            <Image width={30} height={30} src={"/avatar/friend_req.png"} alt="people" />
           </div>
           <p className="grow text-sm font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
             Developers Conversation
           </p>
         </div>
-        <div className="flex items-center  gap-2">
+        <div className="flex items-center gap-2 cursor-pointer">
           <div className="flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full">
             <Image width={32} height={32} src={"/icons/create.png"} alt="people" />
           </div>

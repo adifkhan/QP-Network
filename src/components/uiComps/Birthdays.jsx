@@ -8,8 +8,9 @@ export default function Birthdays() {
       <div className="flex items-center gap-1  my-3">
         <Image width={40} height={40} src={"/icons/birthday.png"} alt="birthday cake" />
         <p className="text-xs">
-          <span className="font-semibold">Ibn Lokman</span> and{" "}
-          <span className="font-semibold">3 others</span> have birthdays today.
+          <span className="font-semibold cursor-pointer hover:underline">Ibn Lokman</span> and{" "}
+          <span className="font-semibold cursor-pointer hover:underline">3 others</span> have
+          birthdays today.
         </p>
       </div>
     </div>

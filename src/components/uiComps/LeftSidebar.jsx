@@ -6,7 +6,7 @@ export default function LeftSidebar() {
     <div className="bg-white p-4 text-neutral h-full">
       <div className="flex items-center gap-2 mb-5">
         <div className="flex items-center justify-center w-10 h-10 bg-gray-300 rounded-full">
-          <Image src={"/james_rodigan.png"} width="40" height="40" alt="QP Network" />
+          <Image src={"/avatar/james_rodigan.png"} width="40" height="40" alt="QP Network" />
         </div>
         <p className="text-md font-medium">James Rodigan</p>
       </div>

@@ -19,7 +19,7 @@ export default function Contacts() {
           {suggestions?.slice(0, 9)?.map((person, index) => (
             <div key={index} className="flex items-center  gap-2">
               <div className="flex items-center justify-center w-8 h-8 bg-gray-300 rounded-full">
-                <Image width={30} height={30} src={"/contact.png"} alt="people" />
+                <Image width={30} height={30} src={"/avatar/contact.png"} alt="people" />
               </div>
               <p className="grow text-sm font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
                 {person?.first_name + " " + person?.last_name}

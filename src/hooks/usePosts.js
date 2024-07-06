@@ -1,8 +1,8 @@
 import React from "react";
 import Cookies from "universal-cookie";
 
-export default function useSuggestions() {
-  const [suggestions, setSuggestions] = React.useState([]);
+export default function usePosts() {
+  const [posts, setPosts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const cookies = new Cookies();
   const token = cookies.get("access_token");
@@ -10,19 +10,19 @@ export default function useSuggestions() {
   React.useEffect(() => {
     if (token) {
       setLoading(true);
-      fetch("https://quantumpossibilities.eu:82/api/suggestion-list", {
+      fetch("https://quantumpossibilities.eu:82/api/get-all-users-posts", {
         headers: { "Content-Type": "application/json", authorization: `bearer ${token}` },
       })
         .then((res) => res.json())
         .then((data) => {
           // console.log("data", data);
           if (data?.status === 200) {
-            setSuggestions(data?.userlist);
+            setPosts(data?.posts);
           }
           setLoading(false);
         });
     }
   }, [token]);
 
-  return { suggestions, loading };
+  return { posts, loading };
 }

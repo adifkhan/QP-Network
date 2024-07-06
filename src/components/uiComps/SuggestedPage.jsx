@@ -15,7 +15,7 @@ export default function SuggestedPage() {
           {suggestions?.slice(0, 4)?.map((page, index) => (
             <div key={index} className="flex items-center justify-between gap-2">
               <div className="w-10 h-10 bg-gray-300 rounded-full">
-                <Image width={40} height={40} src={"/james_rodigan.png"} alt="page" />
+                <Image width={40} height={40} src={"/avatar/oval-1.png"} alt="page" />
               </div>
               <div className="grow">
                 <p className="text-sm font-semibold max-w-24 text-ellipsis overflow-hidden whitespace-nowrap">

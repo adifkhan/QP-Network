@@ -18,7 +18,7 @@ export default function SuggestedPeople() {
           {suggestions?.slice(5, 10)?.map((person, index) => (
             <div key={index} className="flex items-center justify-between gap-2">
               <div className="w-10 h-10 bg-gray-300 rounded-full">
-                <Image width={40} height={40} src={"/people.png"} alt="people" />
+                <Image width={40} height={40} src={"/avatar/people.png"} alt="people" />
               </div>
               <div className="grow">
                 <p className="text-sm font-semibold max-w-28 text-ellipsis overflow-hidden whitespace-nowrap">

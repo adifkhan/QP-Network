@@ -34,10 +34,9 @@ export default function Signup() {
       .then((data) => {
         // console.log(data);
         if (data.status === 200) {
-          localStorage.setItem("access_token", data?.accessToken);
           toast.success(data?.message);
           dispatch(setAuth(data?.user));
-          router.push("/");
+          router.push("/signin");
         } else {
           toast.error(data?.error);
         }
