@@ -7,7 +7,7 @@ export default function Conversations() {
     <div className="bg-white text-neutral px-2 py-3 rounded">
       <div className="flex items-center justify-between">
         <h4 className="font-semibold text-sm">Group Conversations</h4>
-        <IoSearch size={18} color="#AEB1B5" className="mr-2" />
+        <IoSearch size={18} color="#AEB1B5" className="mr-2 cursor-pointer" />
       </div>
       <div className="mt-4 flex flex-col gap-3 ">
         <div className="flex items-center  gap-2">

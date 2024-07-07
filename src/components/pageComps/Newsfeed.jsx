@@ -12,7 +12,7 @@ export default function Newsfeed() {
 
   // console.log("user:", auth);
   return (
-    <main className="grid grid-cols-6 gap-2 bg-[#E5E6EC]">
+    <main className="grid grid-cols-6 gap-2">
       <div>
         <LeftSidebar />
       </div>

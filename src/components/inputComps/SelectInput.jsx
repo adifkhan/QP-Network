@@ -6,7 +6,7 @@ export default function SelectInput({ name, label, options, register, errors }) 
       <label className="text-sm font-semibold">{label}</label>
       <select
         defaultValue=""
-        className="select w-full min-h-10 h-10 bg-transparent border-2 border-[#64748B] rounded-md capitalize"
+        className="select w-full min-h-10 h-10 bg-transparent border-2 border-[#64748B] rounded-md capitalize focus:outline-none"
         {...register(name, { required: `${name} is required` })}
       >
         <option disabled value="">

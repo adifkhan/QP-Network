@@ -5,10 +5,10 @@ export default function PasswordInput({ register, errors }) {
   return (
     <div className="flex flex-col text-neutral">
       <label className="text-sm font-semibold">Password</label>
-      <label className="input input-bordered flex items-center gap-2 w-full h-10 bg-transparent border-2 border-[#64748B] rounded-md">
+      <label className="input input-bordered flex items-center gap-2 w-full h-10 bg-transparent border-2 border-[#64748B] rounded-md focus:outline-none">
         <input
           type={showPass ? "text" : "password"}
-          className="grow"
+          className="grow focus:outline-none"
           placeholder="Enter your password"
           {...register("password", {
             required: "password is required",

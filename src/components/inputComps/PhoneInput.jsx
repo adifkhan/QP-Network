@@ -4,7 +4,7 @@ export default function PhoneInput({ register, errors }) {
   return (
     <div className="flex flex-col text-neutral">
       <label className="text-sm font-semibold">Phone number</label>
-      <label className="input input-bordered flex items-center gap-2 w-full h-10 bg-transparent border-2 border-[#64748B] rounded-md">
+      <label className="input input-bordered flex items-center gap-2 w-full h-10 bg-transparent border-2 border-[#64748B] rounded-md focus:outline-none">
         <select
           defaultValue="US"
           className=" w-14 min-h-10 h-10 max-w-xs bg-transparent focus:outline-none -mx-2"
@@ -19,7 +19,7 @@ export default function PhoneInput({ register, errors }) {
         </select>
         <input
           type="text"
-          className="grow"
+          className="grow focus:outline-none"
           placeholder="+1 (555) 000-0000"
           {...register("phone", {
             required: "phone number is required",

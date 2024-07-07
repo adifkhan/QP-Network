@@ -24,7 +24,7 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
     cookies.remove("access_token");
     router.push("/signin");
   };
-  
+
   return (
     <div
       className="flex items-center gap-2 justify-between h-14 px-4 bg-white shadow-md sticky top-0 right-0 left-0 z-[1000]"
@@ -44,6 +44,7 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
           className={`flex items-center justify-center w-16 h-full cursor-pointer hover:text-accent border-b-[3px] border-transparent hover:border-accent duration-200 ease-in ${
             pathname === "/" ? "border-b-accent text-accent" : ""
           }`}
+          onClick={() => router.push("/")}
         >
           <HiMiniHome size={24} />
         </div>
@@ -65,10 +66,14 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
       </section>
       <section className="w-[60%] flex items-center justify-end gap-6">
         <div className="flex items-center justify-center h-8 w-8 rounded-full bg-slate-200 cursor-pointer">
-          <RiMessengerFill size={18} color="#191D23" />
+          <RiMessengerFill size={20} color="#191D23" className="hover:scale-110 duration-100" />
         </div>
         <div className="flex items-center justify-center h-8 w-8 rounded-full bg-slate-200 cursor-pointer">
-          <AiFillBell size={18} color="#191D23" className="-rotate-12" />
+          <AiFillBell
+            size={20}
+            color="#191D23"
+            className="-rotate-12 hover:scale-110 duration-100"
+          />
         </div>
         <div className="flex items-center justify-center h-8 w-8 rounded-full bg-slate-200 relative">
           <div

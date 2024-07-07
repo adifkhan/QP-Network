@@ -1,5 +1,9 @@
-import React from "react";
+import CreateStory from "@/components/pageComps/CreateStory";
 
 export default function page() {
-  return <div>page</div>;
+  return (
+    <main>
+      <CreateStory />
+    </main>
+  );
 }

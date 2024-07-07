@@ -7,7 +7,7 @@ export default function DoBInput({ register, errors }) {
       <div className="flex items-center gap-2">
         <select
           defaultValue=""
-          className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md"
+          className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md focus:outline-none"
           {...register("month", { required: "month is required" })}
         >
           <option disabled value="">
@@ -21,7 +21,7 @@ export default function DoBInput({ register, errors }) {
         </select>
         <select
           defaultValue=""
-          className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md"
+          className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md focus:outline-none"
           {...register("day", { required: "day is required" })}
         >
           <option disabled value="">
@@ -35,7 +35,7 @@ export default function DoBInput({ register, errors }) {
         </select>
         <select
           defaultValue=""
-          className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md"
+          className="select w-full min-h-10 h-10 max-w-xs bg-transparent border-2 border-[#64748B] rounded-md focus:outline-none"
           {...register("year", { required: "year is required" })}
         >
           <option disabled value="">
