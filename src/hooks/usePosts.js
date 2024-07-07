@@ -10,7 +10,7 @@ export default function usePosts() {
   React.useEffect(() => {
     if (token) {
       setLoading(true);
-      fetch("https://quantumpossibilities.eu:82/api/get-all-users-posts", {
+      fetch("https://quantumpossibilities.eu:82/api/get-all-users-posts?pageNo=1&pageSize=10", {
         headers: { "Content-Type": "application/json", authorization: `bearer ${token}` },
       })
         .then((res) => res.json())

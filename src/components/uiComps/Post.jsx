@@ -8,9 +8,41 @@ import { HiOutlineEmojiHappy } from "react-icons/hi";
 import { IoCameraOutline } from "react-icons/io5";
 import { MdOutlineGifBox } from "react-icons/md";
 import { CiImageOn } from "react-icons/ci";
+import Cookies from "universal-cookie";
 
 export default function Post({ post }) {
+  const cookies = new Cookies();
+  const token = cookies.get("access_token");
   const [viewReply, setViewReply] = React.useState(false);
+  const [showReaction, setShowReaction] = React.useState(false);
+
+  const handlePostReaction = (postId, reaction_type) => {
+    // console.log("668979e6ead17d642758c7db", postId, reaction);
+    if (token) {
+      fetch("https://quantumpossibilities.eu:82/api/save-reaction-main-post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${token}`,
+        },
+        body: JSON.stringify({
+          post_id: postId,
+          reaction_type: reaction_type,
+          user_id: "668979e6ead17d642758c7db",
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          setShowReaction(false);
+        });
+    }
+  };
   return (
     <div className="flex flex-col gap-[2px]">
       <div className="bg-white rounded-sm">
@@ -39,6 +71,7 @@ export default function Post({ post }) {
             </div>
           </div>
         </section>
+        <section className="text-neutral px-4 py-2">{post?.description}</section>
         <section>
           <Image width={500} height={400} src={"/post.jpg"} alt="posted photo" className="w-full" />
         </section>
@@ -86,12 +119,50 @@ export default function Post({ post }) {
           </div>
         </section>
         <section className="flex items-center justify-between text-[#6A6A6B] px-6 pt-4 pb-3">
-          <div className="flex items-center gap-1 cursor-pointer font-medium hover:text-neutral">
-            <Image width={20} height={20} src={"/icons/like.png"} alt="like" className="h-5 w-5" />
-            <p>Like</p>
+          <div className="relative w-full">
+            <div
+              className="flex items-center gap-1 cursor-pointer font-medium hover:text-neutral"
+              onClick={() => setShowReaction(!showReaction)}
+            >
+              <Image
+                width={20}
+                height={20}
+                src={"/icons/like.png"}
+                alt="like"
+                className="h-5 w-5"
+              />
+              <p>Like</p>
+            </div>
+            {showReaction && (
+              <div className="flex items-center gap-[2px] bg-white cursor-pointer p-1 rounded-full shadow-xl absolute top-[-30px] border-[1px] border-neutral z-30">
+                <Image
+                  width={20}
+                  height={20}
+                  src={"/icons/like-2.png"}
+                  alt="like emoji"
+                  onClick={() => handlePostReaction(post?._id, "like")}
+                />
+                <Image
+                  width={18}
+                  height={18}
+                  src={"/icons/haha_emoji.png"}
+                  alt="haha emoji"
+                  onClick={() => handlePostReaction(post?._id, "haha")}
+                />
+                <Image
+                  width={20}
+                  height={20}
+                  src={"/icons/heart.png"}
+                  alt="love emoji"
+                  onClick={() => handlePostReaction(post?._id, "love")}
+                />
+              </div>
+            )}
           </div>
-          <p className="cursor-pointer font-medium hover:text-neutral">Comment</p>
-          <p className="cursor-pointer font-medium hover:text-neutral">Share</p>
+          <p className="cursor-pointer font-medium hover:text-neutral w-full text-center">
+            Comment
+          </p>
+          <p className="cursor-pointer font-medium hover:text-neutral w-full text-right">Share</p>
         </section>
       </div>
       <div className="bg-white rounded-sm py-4 px-6">

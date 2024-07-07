@@ -6,7 +6,7 @@ export default function PostGallery() {
   const { posts } = usePosts();
   return (
     <div className="flex flex-col gap-2">
-      {posts?.slice(0, 10).map((post, index) => (
+      {posts?.map((post, index) => (
         <Post key={index} post={post} />
       ))}
     </div>
