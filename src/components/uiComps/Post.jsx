@@ -213,7 +213,14 @@ export default function Post({ post }) {
               </div>
             )}
           </div>
-          <p className="cursor-pointer font-medium hover:text-neutral w-full text-center">
+          <p
+            className="cursor-pointer font-medium hover:text-neutral w-full text-center"
+            onClick={() => {
+              if (commentRef?.current) {
+                commentRef?.current?.focus();
+              }
+            }}
+          >
             Comment
           </p>
           <p className="cursor-pointer font-medium hover:text-neutral w-full text-right">Share</p>
