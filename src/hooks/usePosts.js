@@ -21,8 +21,9 @@ export default function usePosts() {
           if (data?.status === 200) {
             setPosts(data?.posts);
           }
-          setLoading(false);
-        });
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
     }
   }, [token, refetch]);
 

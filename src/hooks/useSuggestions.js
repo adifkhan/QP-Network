@@ -19,8 +19,9 @@ export default function useSuggestions() {
           if (data?.status === 200) {
             setSuggestions(data?.userlist);
           }
-          setLoading(false);
-        });
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
     }
   }, [token]);
 
