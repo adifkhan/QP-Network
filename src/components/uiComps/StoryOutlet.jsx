@@ -32,7 +32,7 @@ export default function StoryOutlet({
           storyType === "photo_story" ? (
             <div className="bg-[#f0f2f5] flex flex-col items-center justify-center gap-2 rounded-md py-16 mt-2">
               <section
-                className={`flex flex-col gap-3 items-center justify-center w-[220px] h-[350px] rounded-md bg-[${bgColor}] `}
+                className={`flex flex-col gap-3 items-center justify-center w-[240px] h-[350px] rounded-md bg-[${bgColor}] `}
               >
                 {storyImage ? (
                   <div className="flex items-center justify-center w-full h-full relative overflow-hidden">
@@ -84,7 +84,7 @@ export default function StoryOutlet({
           ) : (
             <div className="bg-[#f0f2f5] flex justify-center rounded-md py-16 mt-2">
               <section
-                className={`flex flex-col gap-3 items-center justify-center w-[220px] h-[350px] rounded-md bg-[${bgColor}] cursor-pointer p-2`}
+                className={`flex flex-col gap-3 items-center justify-center w-[240px] h-[350px] rounded-md bg-[${bgColor}] cursor-pointer p-2`}
               >
                 <ResizableTextArea
                   storyText={storyText}
@@ -98,7 +98,7 @@ export default function StoryOutlet({
           <div className="bg-[#f0f2f5] flex justify-center gap-2 rounded-md py-16 mt-2">
             <section
               onClick={() => setStoryType("photo_story")}
-              className="flex flex-col gap-3 items-center justify-center w-[200px] h-[350px] rounded-md bg-gradient-to-t from-purple-500 to-pink-500 cursor-pointer"
+              className="flex flex-col gap-3 items-center justify-center w-[240px] h-[350px] rounded-md bg-gradient-to-t from-purple-500 to-pink-500 cursor-pointer"
             >
               <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center">
                 <FaImage size={22} />
@@ -107,7 +107,7 @@ export default function StoryOutlet({
             </section>
             <section
               onClick={() => setStoryType("text_story")}
-              className="flex flex-col gap-3 items-center justify-center w-[200px] h-[350px] rounded-md bg-gradient-to-t from-sky-500 to-indigo-500 cursor-pointer"
+              className="flex flex-col gap-3 items-center justify-center w-[240px] h-[350px] rounded-md bg-gradient-to-t from-sky-500 to-indigo-500 cursor-pointer"
             >
               <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center">
                 <TbTextSize size={28} />

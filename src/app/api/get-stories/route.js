@@ -9,11 +9,25 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get("userId");
 
-    // could delete stories that were updated before 24 hours
+    const currentDate = new Date();
+    const pastDate = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000);
 
-    const stories = await Story.find({ user_id: userId });
+    const myStories = await Story.find({ user_id: userId, createdAt: { $gte: pastDate } });
 
-    return NextResponse.json({ stories, status: 200 }, { status: 200 });
+    const pipeline = [
+      {
+        $match: { user_id: { $ne: userId } }, // neglecting createdAt here for now
+      },
+      {
+        $group: { _id: "$user_id", stories: { $push: "$$ROOT" } },
+      },
+      {
+        $project: { _id: 0, stories: 1 },
+      },
+    ];
+    const otherStories = await Story.aggregate(pipeline);
+
+    return NextResponse.json({ myStories, otherStories, status: 200 }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }

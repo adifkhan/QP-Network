@@ -14,8 +14,9 @@ body {
   background: #e5e6ec;
   color: "#191D23";
   max-width: 1720px;
-  min-width: 1440px;
+  min-width: 1350px;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 [contenteditable] {

@@ -34,7 +34,7 @@ export default function Signin() {
         // console.log(data);
         // accessToken refreshToken message
         if (data.status === 200) {
-          cookies.set("access_token", data?.accessToken, { maxAge: 604800, path: "/" });
+          cookies.set("access_token", data?.accessToken, { maxAge: 86400, path: "/" });
           toast.success(data?.message);
           dispatch(setAuth(data?.user));
           router.push("/");

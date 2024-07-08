@@ -2,7 +2,8 @@ import { useAppSelector } from "@/redux/store";
 import React from "react";
 
 export default function useStory() {
-  const [stories, setStories] = React.useState([]);
+  const [myStories, setMyStories] = React.useState([]);
+  const [otherStories, setOtherStories] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const { auth } = useAppSelector((state) => state.authReducer);
 
@@ -15,12 +16,13 @@ export default function useStory() {
       .then((data) => {
         // console.log("data", data);
         if (data?.status === 200) {
-          setStories(data?.stories);
+          setMyStories(data?.myStories);
+          setOtherStories(data?.otherStories);
         }
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   }, [auth?._id]);
 
-  return { stories, loading };
+  return { myStories, otherStories, loading };
 }

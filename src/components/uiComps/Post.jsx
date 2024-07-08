@@ -32,6 +32,7 @@ export default function Post({ post }) {
 
   const handlePostReaction = (postId, reaction_type) => {
     setReactionCount((prev) => prev + 1);
+    setShowReaction(false);
     if (token) {
       fetch("https://quantumpossibilities.eu:82/api/save-reaction-main-post", {
         method: "POST",
@@ -51,12 +52,10 @@ export default function Post({ post }) {
         })
         .catch((err) => {
           console.error(err);
-        })
-        .finally(() => {
-          setShowReaction(false);
         });
     }
   };
+
   const handlePostComment = (postId) => {
     const newComment = {
       comment_name: commentText,
@@ -88,9 +87,6 @@ export default function Post({ post }) {
         })
         .catch((err) => {
           console.error(err);
-        })
-        .finally(() => {
-          setShowReaction(false);
         });
     }
   };
@@ -176,43 +172,46 @@ export default function Post({ post }) {
         <section className="flex items-center justify-between text-[#6A6A6B] px-6 pt-4 pb-3">
           <div className="relative w-full">
             <div
-              className="flex items-center gap-1 cursor-pointer font-medium hover:text-neutral"
-              onClick={() => setShowReaction(!showReaction)}
+              className="w-fit"
+              onMouseEnter={() => setShowReaction(true)}
+              onMouseLeave={() => setShowReaction(false)}
             >
-              <Image
-                width={20}
-                height={20}
-                src={"/icons/like.png"}
-                alt="like"
-                className="h-5 w-5"
-              />
-              <p>Like</p>
-            </div>
-            {showReaction && (
-              <div className="flex items-center gap-[2px] bg-white cursor-pointer p-1 rounded-full shadow-xl absolute top-[-30px] border-[1px] border-neutral z-30">
+              <div className="flex items-center gap-1 cursor-pointer font-medium hover:text-neutral">
                 <Image
                   width={20}
                   height={20}
-                  src={"/icons/like-2.png"}
-                  alt="like emoji"
-                  onClick={() => handlePostReaction(post?._id, "like")}
+                  src={"/icons/like.png"}
+                  alt="like"
+                  className="h-5 w-5"
                 />
-                <Image
-                  width={18}
-                  height={18}
-                  src={"/icons/haha_emoji.png"}
-                  alt="haha emoji"
-                  onClick={() => handlePostReaction(post?._id, "haha")}
-                />
-                <Image
-                  width={20}
-                  height={20}
-                  src={"/icons/heart.png"}
-                  alt="love emoji"
-                  onClick={() => handlePostReaction(post?._id, "love")}
-                />
+                <p>Like</p>
               </div>
-            )}
+              {showReaction && (
+                <div className="flex items-center gap-[2px] bg-white cursor-pointer p-1 rounded-full shadow-xl absolute top-[-30px] border-[1px] border-neutral z-30">
+                  <Image
+                    width={20}
+                    height={20}
+                    src={"/icons/like-2.png"}
+                    alt="like emoji"
+                    onClick={() => handlePostReaction(post?._id, "like")}
+                  />
+                  <Image
+                    width={18}
+                    height={18}
+                    src={"/icons/haha_emoji.png"}
+                    alt="haha emoji"
+                    onClick={() => handlePostReaction(post?._id, "haha")}
+                  />
+                  <Image
+                    width={20}
+                    height={20}
+                    src={"/icons/heart.png"}
+                    alt="love emoji"
+                    onClick={() => handlePostReaction(post?._id, "love")}
+                  />
+                </div>
+              )}
+            </div>
           </div>
           <p
             className="cursor-pointer font-medium hover:text-neutral w-full text-center"

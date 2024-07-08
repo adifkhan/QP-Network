@@ -5,7 +5,6 @@ import CreateStorySidebar from "../uiComps/CreateStorySidebar";
 import StoryOutlet from "../uiComps/StoryOutlet";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import useStory from "@/hooks/useStory";
 import { useAppSelector } from "@/redux/store";
 
 export default function CreateStory() {
@@ -15,13 +14,8 @@ export default function CreateStory() {
   const [bgColor, setBgColor] = React.useState("#00A3FF");
   const [privacyType, setPrivacryType] = React.useState("public");
   const [storyText, setStoryText] = React.useState("");
-  const [storyImage, setStoryImage] = React.useState(
-    "https://res.cloudinary.com/dwqwxozwv/image/upload/v1720380734/affburg/image-2_icwpux.jpg"
-  );
+  const [storyImage, setStoryImage] = React.useState("");
   const [imageScale, setImageScale] = React.useState(100);
-
-  const { stories } = useStory();
-  console.log(stories);
 
   const handleCreateStory = () => {
     fetch("/api/create-story", {
