@@ -32,7 +32,7 @@ export default function StoryGallery() {
         {myStories.length > 0 && (
           <div
             className="flex flex-col items-center cursor-pointer"
-            onClick={router.push(`/view-story/${myStories?.[0]?.user_id}`)}
+            onClick={() => router.push(`/view-story/${myStories?.[0]?.user_id}`)}
           >
             <div
               className={`w-[150px] h-[215px] flex items-center justify-center rounded-xl bg-[${myStories?.[0]?.bgColor}]`}
@@ -56,7 +56,7 @@ export default function StoryGallery() {
             <div
               key={index}
               className="flex flex-col items-center cursor-pointer"
-              onClick={router.push(`/view-story/${story?.stories?.[0]?.user_id}`)}
+              onClick={() => router.push(`/view-story/${story?.stories?.[0]?.user_id}`)}
             >
               <div
                 className={`w-[150px] h-[215px] flex items-center justify-center rounded-xl bg-[${story?.stories?.[0]?.bgColor}]`}
