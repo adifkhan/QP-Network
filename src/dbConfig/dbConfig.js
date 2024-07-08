@@ -6,15 +6,17 @@ import mongoose from "mongoose";
 
 export async function connect() {
   try {
-    mongoose.connect("mongodb+srv://qpnetwork:ne54XN4QshTo1SUO@cluster0.ctzvywk.mongodb.net/");
+    mongoose.connect(
+      "mongodb+srv://qpnetwork:ne54XN4QshTo1SUO@cluster0.ctzvywk.mongodb.net/qpnetwork"
+    );
     const connection = mongoose.connection;
 
     connection.on("connected", () => {
-      console.log("Mongodb connected successfully!");
+      console.log("DB connected!");
     });
 
     connection.on("error", (err) => {
-      console.log("Mongodb connection error, Please make sure Db is running", +err);
+      console.log("Mongodb connection error: ", err);
       process.exit();
     });
   } catch (error) {

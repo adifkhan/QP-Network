@@ -3,8 +3,12 @@
 import React from "react";
 import CreateStorySidebar from "../uiComps/CreateStorySidebar";
 import StoryOutlet from "../uiComps/StoryOutlet";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import useStory from "@/hooks/useStory";
 
 export default function CreateStory() {
+  const router = useRouter();
   const [storyType, setStoryType] = React.useState("");
   const [bgColor, setBgColor] = React.useState("#00A3FF");
   const [privacyType, setPrivacryType] = React.useState("public");
@@ -14,9 +18,11 @@ export default function CreateStory() {
   );
   const [imageScale, setImageScale] = React.useState(100);
 
+  const { stories } = useStory();
+  console.log(stories);
+
   const handleCreateStory = () => {
-    // console.log(storyType, bgColor, privacyType, storyText, storyImage, imageScale);
-    fetch("/api/stories", {
+    fetch("/api/create-story", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -28,7 +34,13 @@ export default function CreateStory() {
         storyImage,
         imageScale,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(data?.message);
+        router.push("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
