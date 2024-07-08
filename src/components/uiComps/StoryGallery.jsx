@@ -17,6 +17,7 @@ export default function StoryGallery() {
             className="w-[150px] h-[215px] flex items-center justify-center rounded-xl"
             style={{
               backgroundImage: `url(${"/story-2.png"})`,
+              backgroundRepeat: "no-repeat",
             }}
           ></div>
           <div className="mt-[-20px] cursor-pointer">
@@ -39,6 +40,8 @@ export default function StoryGallery() {
               style={{
                 backgroundImage: `url(${myStories?.[0]?.storyImage})`,
                 backgroundSize: `${myStories?.[0]?.storyImage}% ${myStories?.[0]?.storyImage}%`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
               }}
             >
               <p className="text-white text-sm text-center font-semibold p-2">
@@ -63,6 +66,8 @@ export default function StoryGallery() {
                 style={{
                   backgroundImage: `url(${story?.stories?.[0]?.storyImage})`,
                   backgroundSize: `${story?.stories?.[0]?.storyImage}% ${story?.stories?.[0]?.storyImage}%`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
                 }}
               >
                 <p className="text-white text-sm text-center font-semibold p-2">
