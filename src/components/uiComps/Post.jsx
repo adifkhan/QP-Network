@@ -10,8 +10,10 @@ import { MdOutlineGifBox } from "react-icons/md";
 import { CiImageOn } from "react-icons/ci";
 import Cookies from "universal-cookie";
 import CommentReply from "./CommentReply";
+import { useAppSelector } from "@/redux/store";
 
 export default function Post({ post }) {
+  const { auth } = useAppSelector((state) => state.authReducer);
   const cookies = new Cookies();
   const token = cookies.get("access_token");
   const [showMoreComments, setShowMoreComments] = React.useState(false);
@@ -29,7 +31,6 @@ export default function Post({ post }) {
   }, [post?.comments, post?.reactionCount]);
 
   const handlePostReaction = (postId, reaction_type) => {
-    // console.log("668979e6ead17d642758c7db", postId, reaction);
     setReactionCount((prev) => prev + 1);
     if (token) {
       fetch("https://quantumpossibilities.eu:82/api/save-reaction-main-post", {
@@ -41,7 +42,7 @@ export default function Post({ post }) {
         body: JSON.stringify({
           post_id: postId,
           reaction_type: reaction_type,
-          user_id: "668979e6ead17d642758c7db",
+          user_id: auth?._id ?? "66878e4544edc6fbb5f548c1",
         }),
       })
         .then((res) => res.json())
@@ -60,8 +61,8 @@ export default function Post({ post }) {
     const newComment = {
       comment_name: commentText,
       user_id: {
-        first_name: "Maynul",
-        last_name: "Islam",
+        first_name: auth?.first_name ?? "Maynul",
+        last_name: auth?.last_name ?? "Islam",
       },
       comment_type: "main_comment",
     };
@@ -77,7 +78,7 @@ export default function Post({ post }) {
         body: JSON.stringify({
           post_id: postId,
           comment_name: commentText,
-          user_id: "668979e6ead17d642758c7db",
+          user_id: auth?._id ?? "66878e4544edc6fbb5f548c1",
         }),
       })
         .then((res) => res.json())

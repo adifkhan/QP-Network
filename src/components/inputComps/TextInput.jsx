@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TextInput({ name, label, type, placeholder, register, errors }) {
   return (
-    <div className="flex flex-col text-neutral">
+    <div className="w-full flex flex-col text-neutral">
       <label className="text-sm font-semibold">{label}</label>
       <input
         type={type}

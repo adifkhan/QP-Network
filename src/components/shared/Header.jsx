@@ -33,7 +33,14 @@ export default function Header({ userMenuOpen, setUserMenuOpen }) {
       }}
     >
       <section className="w-[80%] flex items-center gap-3">
-        <Image src={"/QP-network.png"} width="35" height="35" alt="QP Network" />
+        <Image
+          src={"/QP-network.png"}
+          width="35"
+          height="35"
+          alt="QP Network"
+          className="cursor-pointer"
+          onClick={() => router.push("/")}
+        />
         <div className="flex items-center gap-2 px-2 py-1 bg-[#F0F2F5] rounded-full text-neutral">
           <IoSearch />
           <input type="text" placeholder="search" className="bg-transparent focus:outline-none" />

@@ -6,8 +6,10 @@ import StoryOutlet from "../uiComps/StoryOutlet";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import useStory from "@/hooks/useStory";
+import { useAppSelector } from "@/redux/store";
 
 export default function CreateStory() {
+  const { auth } = useAppSelector((state) => state.authReducer);
   const router = useRouter();
   const [storyType, setStoryType] = React.useState("");
   const [bgColor, setBgColor] = React.useState("#00A3FF");
@@ -26,7 +28,7 @@ export default function CreateStory() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        user_id: "668979e6ead17d642758c7db",
+        user_id: auth?._id ?? "66878e4544edc6fbb5f548c1",
         storyType,
         bgColor,
         privacyType,
@@ -44,7 +46,7 @@ export default function CreateStory() {
   };
 
   return (
-    <main className="flex" style={{ maxHeight: "calc(100vh - 60px)", minHeight: "500px" }}>
+    <main className="flex" style={{ minHeight: "500px", height: "calc(100vh - 60px)" }}>
       <CreateStorySidebar
         storyType={storyType}
         setBgColor={setBgColor}

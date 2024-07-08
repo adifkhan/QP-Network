@@ -48,8 +48,8 @@ export default function Signup() {
   };
 
   return (
-    <main className="flex gap-20 items-start bg-[#0b3243] min-h-screen p-20">
-      <section className="text-white mt-28">
+    <main className="flex gap-20 items-start justify-between bg-[#0b3243] min-h-screen p-20 2xl:p-32">
+      <section className="text-white mt-28 max-w-[850px]">
         <h2 className="text-[50px] font-semibold">
           Welcome to the first decentralised Social Network in the world
         </h2>
@@ -65,12 +65,12 @@ export default function Signup() {
           Login Now!
         </button>
       </section>
-      <section className="w-[80%] min-w-[350px]">
+      <section className="w-[80%] min-w-[350px] max-w-[400px]">
         <div className="bg-white rounded p-6">
           <h6 className="text-accent text-xl font-bold">Register your Account</h6>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="text-neutral flex flex-col gap-2 mt-4">
-              <div className="flex items-start gap-2">
+              <div className=" flex items-start justify-between gap-2">
                 <TextInput
                   name="first_name"
                   label="First Name"
