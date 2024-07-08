@@ -12,7 +12,7 @@ export default function LeftSidebar() {
       </div>
       <div className="flex flex-col gap-5">
         {menuItems.map((item, index) => (
-          <div key={index} className="flex items-center gap-2">
+          <div key={index} className="flex items-center gap-2 cursor-pointer hover:text-accent">
             <Image src={item.icon} width="20" height="20" alt={item.title} />
             <p className="text-sm font-medium">{item.title}</p>
           </div>

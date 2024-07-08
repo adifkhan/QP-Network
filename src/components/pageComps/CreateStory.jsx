@@ -15,7 +15,20 @@ export default function CreateStory() {
   const [imageScale, setImageScale] = React.useState(100);
 
   const handleCreateStory = () => {
-    console.log(storyType, bgColor, privacyType, storyText, storyImage, imageScale);
+    // console.log(storyType, bgColor, privacyType, storyText, storyImage, imageScale);
+    fetch("/api/stories", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: "668979e6ead17d642758c7db",
+        storyType,
+        bgColor,
+        privacyType,
+        storyText,
+        storyImage,
+        imageScale,
+      }),
+    });
   };
 
   return (
