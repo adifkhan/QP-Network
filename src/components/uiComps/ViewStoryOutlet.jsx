@@ -1,14 +1,11 @@
-import loading from "@/app/(private)/loading";
 import React from "react";
 import Loader from "../shared/Loader";
-import { FaChevronLeft, FaChevronRight, FaGlobeAmericas } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import { RxCross2 } from "react-icons/rx";
 
 export default function ViewStoryOutlet({ stories, loading }) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  console.log(stories, currentIndex);
-  console.log(stories?.[currentIndex]);
 
   //   React.useEffect(() => {
   //     setTimeout(() => {
@@ -38,7 +35,9 @@ export default function ViewStoryOutlet({ stories, loading }) {
   return (
     <div className="w-full bg-black">
       {loading ? (
-        <Loader />
+        <div className="h-screen flex flex-col items-center justify-center">
+          <Loader />
+        </div>
       ) : (
         <div className="flex flex-col items-center justify-center mt-20 relative">
           <div

@@ -12,7 +12,9 @@ export default function FriendReq() {
         <p className="text-xs text-accent cursor-pointer hover:underline">See all</p>
       </div>
       {loading ? (
-        <Loader />
+        <div className="min-h-[200px] flex flex-col items-center justify-center">
+          <Loader />
+        </div>
       ) : (
         <div className="mt-4 flex flex-col gap-3 ">
           {suggestions?.slice(10, 13)?.map((person, index) => (

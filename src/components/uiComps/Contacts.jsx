@@ -13,7 +13,9 @@ export default function Contacts() {
         <IoSearch size={18} color="#AEB1B5" className="mr-2 cursor-pointer" />
       </div>
       {loading ? (
-        <Loader />
+        <div className="min-h-[200px] flex flex-col items-center justify-center">
+          <Loader />
+        </div>
       ) : (
         <div className="mt-4 flex flex-col gap-3 ">
           {suggestions?.slice(0, 9)?.map((person, index) => (

@@ -9,7 +9,9 @@ export default function SuggestedPage() {
     <div className="bg-white text-neutral px-2 py-3 rounded min-h-[250px]">
       <h4 className="font-semibold text-sm text-center">Pages You Might Like</h4>
       {loading ? (
-        <Loader />
+        <div className="min-h-[200px] flex flex-col items-center justify-center">
+          <Loader />
+        </div>
       ) : (
         <div className="mt-4 flex flex-col gap-3 ">
           {suggestions?.slice(0, 4)?.map((page, index) => (

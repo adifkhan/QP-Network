@@ -12,7 +12,9 @@ export default function SuggestedPeople() {
         <p className="text-xs text-accent cursor-pointer hover:underline">See All</p>
       </div>
       {loading ? (
-        <Loader />
+        <div className="min-h-[200px] flex flex-col items-center justify-center">
+          <Loader />
+        </div>
       ) : (
         <div className="mt-4 flex flex-col gap-3 ">
           {suggestions?.slice(5, 10)?.map((person, index) => (
