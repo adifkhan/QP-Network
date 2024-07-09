@@ -7,6 +7,7 @@ import ViewStoryOutlet from "../uiComps/ViewStoryOutlet";
 export default function ViewStory({ userId }) {
   const [stories, setStories] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+
   React.useEffect(() => {
     setLoading(true);
     fetch(`/api/single-user-story?userId=${userId}`, {

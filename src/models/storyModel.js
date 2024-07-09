@@ -6,6 +6,7 @@ const storySchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a user_id"],
     },
+    user_name: String,
     storyType: {
       type: String,
       required: [true, "Please provide story type"],
@@ -18,6 +19,13 @@ const storySchema = new mongoose.Schema(
     storyText: String,
     storyImage: String,
     imageScale: String,
+    viewers: [
+      {
+        user_id: String,
+        reactions: [String], // like, love, wow etc
+        comments: [String],
+      },
+    ],
   },
   { timestamps: true }
 );

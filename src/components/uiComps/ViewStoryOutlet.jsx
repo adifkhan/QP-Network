@@ -16,6 +16,19 @@ export default function ViewStoryOutlet({ stories, loading }) {
   //       }
   //     }, 3000);
   //   }, [currentIndex, stories?.length]);
+  React.useEffect(() => {
+    // fetch(`/api/single-user-story?userId=${userId}`, {
+    //   headers: { "Content-Type": "application/json" },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     // console.log("data", data);
+    //     if (data?.status === 200) {
+    //       setStories(data?.stories);
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
+  }, []);
 
   const goForward = () => {
     if (currentIndex >= stories?.length - 1) {

@@ -3,15 +3,33 @@ import { useRouter } from "next/navigation";
 import useStory from "@/hooks/useStory";
 import { FaChevronRight } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
+import { FaChevronLeft } from "react-icons/fa6";
 
 export default function StoryGallery() {
   const router = useRouter();
   const { auth } = useSelector((state) => state?.authReducer);
   const { myStories, otherStories } = useStory();
 
+  const scrollContainerRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 200; // Amount to scroll in pixels
+      if (direction === "forward") {
+        scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      } else if (direction === "backward") {
+        scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <div className="bg-white rounded-sm px-3 pt-4 pb-5 relative">
-      <div className="flex items-start justify-start gap-3 overflow-hidden">
+      <div
+        className="flex items-start justify-start gap-3 overflow-hidden"
+        ref={scrollContainerRef}
+      >
         <div className="flex flex-col items-center">
           <div
             className="w-[150px] h-[215px] flex items-center justify-center rounded-xl"
@@ -81,7 +99,16 @@ export default function StoryGallery() {
             </div>
           ))}
       </div>
-      <div className="flex items-center justify-center h-10 w-10 rounded-full bg-white absolute right-5 top-[40%] cursor-pointer">
+      <div
+        onClick={() => scroll("backward")}
+        className="flex items-center justify-center h-8 w-8 rounded-full bg-white absolute left-3 top-[40%] cursor-pointer"
+      >
+        <FaChevronLeft color="#191D23" />
+      </div>
+      <div
+        onClick={() => scroll("forward")}
+        className="flex items-center justify-center h-8 w-8 rounded-full bg-white absolute right-3 top-[40%] cursor-pointer"
+      >
         <FaChevronRight color="#191D23" />
       </div>
     </div>
