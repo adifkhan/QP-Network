@@ -129,14 +129,21 @@ export default function Post({ post }) {
                 <Image
                   width={18}
                   height={18}
-                  src={"/icons/haha_emoji.png"}
+                  src={"/icons/like-react.png"}
                   alt="haha emoji"
-                  className="z-20"
+                  className="z-30"
                 />
                 <Image
                   width={18}
                   height={18}
-                  src={"/icons/love_emoji.png"}
+                  src={"/icons/haha-react.png"}
+                  alt="love emoji"
+                  className="ml-[-4px] z-20"
+                />
+                <Image
+                  width={18}
+                  height={18}
+                  src={"/icons/love-react.png"}
                   alt="love emoji"
                   className="ml-[-4px] z-10"
                 />
@@ -191,21 +198,21 @@ export default function Post({ post }) {
                   <Image
                     width={20}
                     height={20}
-                    src={"/icons/like-2.png"}
+                    src={"/icons/like-react.png"}
                     alt="like emoji"
                     onClick={() => handlePostReaction(post?._id, "like")}
                   />
                   <Image
                     width={18}
                     height={18}
-                    src={"/icons/haha_emoji.png"}
+                    src={"/icons/haha-react.png"}
                     alt="haha emoji"
                     onClick={() => handlePostReaction(post?._id, "haha")}
                   />
                   <Image
                     width={20}
                     height={20}
-                    src={"/icons/heart.png"}
+                    src={"/icons/love-react.png"}
                     alt="love emoji"
                     onClick={() => handlePostReaction(post?._id, "love")}
                   />
@@ -249,19 +256,19 @@ export default function Post({ post }) {
                     Duis malesuada nunc sed faucibus pellentes Proin odio nulla, rhoncus in dictum
                     in, tincidunt vel l
                   </p>
-                  <div className="flex items-center gap-[2px] bg-white cursor-pointer w-fit p-[2px] rounded-full shadow-lg absolute bottom-[-12px] right-10">
+                  <div className="flex items-center gap-[2px] bg-white cursor-pointer w-fit px-1 py-[2px] rounded-full shadow-lg absolute bottom-[-12px] right-10">
                     <div className="flex">
                       <Image
                         width={18}
                         height={18}
-                        src={"/icons/like-2.png"}
+                        src={"/icons/like-react.png"}
                         alt="like emoji"
                         className="z-20"
                       />
                       <Image
                         width={18}
                         height={18}
-                        src={"/icons/heart.png"}
+                        src={"/icons/love-react.png"}
                         alt="love emoji"
                         className="ml-[-4px] z-10"
                       />

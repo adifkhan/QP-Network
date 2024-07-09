@@ -17,19 +17,19 @@ export default function CommentReply({ reply }) {
                 Duis malesuada nunc sed faucibus pellentes Proin odio nulla, rhoncus in dictum in,
                 tincidunt vel l
               </p>
-              <div className="flex items-center gap-[2px] bg-white cursor-pointer w-fit p-[2px] rounded-full shadow-lg absolute bottom-[-12px] right-10">
+              <div className="flex items-center gap-[2px] bg-white cursor-pointer w-fit px-1 py-[2px] rounded-full shadow-lg absolute bottom-[-12px] right-10">
                 <div className="flex">
                   <Image
                     width={18}
                     height={18}
-                    src={"/icons/like-2.png"}
+                    src={"/icons/like-react.png"}
                     alt="like emoji"
                     className="z-20"
                   />
                   <Image
                     width={18}
                     height={18}
-                    src={"/icons/heart.png"}
+                    src={"/icons/love-react.png"}
                     alt="love emoji"
                     className="ml-[-4px] z-10"
                   />

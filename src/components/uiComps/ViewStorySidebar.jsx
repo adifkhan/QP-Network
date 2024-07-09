@@ -19,10 +19,41 @@ export default function ViewStorySidebar() {
               </p>
               <p className="text-[10px] text-accent">12h</p>
             </div>
-            <div>Like</div>
+            {index <= 7 ? (
+              <div className="flex gap-1">
+                <Image
+                  width={20}
+                  height={20}
+                  src={"/icons/love-react.png"}
+                  alt="raction"
+                  className="w-5 h-5 cursor-pointer"
+                />
+                <Image
+                  width={20}
+                  height={20}
+                  src={"/icons/love-react.png"}
+                  alt="raction"
+                  className="w-5 h-5 cursor-pointer"
+                />
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
         ))}
       </div>
     </div>
   );
 }
+// {index < 7 ? (
+//   <Image
+//     width={20}
+//     height={20}
+//     src={"/icons/love-react.png"}
+//     alt="raction"
+//     className="w-5 h-5 cursor-pointer"
+//   />
+// ) : (
+//   <div></div>
+// )}
+// }
