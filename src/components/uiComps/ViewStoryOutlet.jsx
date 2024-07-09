@@ -3,8 +3,11 @@ import Loader from "../shared/Loader";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import { RxCross2 } from "react-icons/rx";
+import { useAppSelector } from "@/redux/store";
+import { toast } from "react-toastify";
 
 export default function ViewStoryOutlet({ stories, loading }) {
+  const { auth } = useAppSelector((state) => state.authReducer);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   //   React.useEffect(() => {
@@ -16,19 +19,24 @@ export default function ViewStoryOutlet({ stories, loading }) {
   //       }
   //     }, 3000);
   //   }, [currentIndex, stories?.length]);
+
   React.useEffect(() => {
-    // fetch(`/api/single-user-story?userId=${userId}`, {
-    //   headers: { "Content-Type": "application/json" },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     // console.log("data", data);
-    //     if (data?.status === 200) {
-    //       setStories(data?.stories);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
-  }, []);
+    fetch("/api/story-action", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        storyId: stories?.[currentIndex]?._id,
+        userId: auth?._id ?? "66878e4544edc6fbb5f548c1",
+        userName: auth?.fullName ?? "Adif Khan",
+        actionType: "viewed",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("data", data);
+      })
+      .catch((err) => console.log(err));
+  }, [auth?._id, auth?.fullName, currentIndex, stories]);
 
   const goForward = () => {
     if (currentIndex >= stories?.length - 1) {
@@ -42,6 +50,36 @@ export default function ViewStoryOutlet({ stories, loading }) {
       setCurrentIndex(stories?.length - 1);
     } else {
       setCurrentIndex((prev) => prev - 1);
+    }
+  };
+
+  const postStoryAction = (type, react, comment) => {
+    fetch("/api/story-action", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        storyId: stories?.[currentIndex]?._id,
+        userId: auth?._id ?? "66878e4544edc6fbb5f548c1",
+        userName: auth?.fullName ?? "Adif Khan",
+        actionType: type,
+        reactType: react,
+        comment: comment,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.status === 200) {
+          toast.success("Reaction posted");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleKeyPress = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      postStoryAction("commented", null, e.target.value);
     }
   };
 
@@ -106,6 +144,7 @@ export default function ViewStoryOutlet({ stories, loading }) {
             <input
               type="text"
               className="bg-[#EEEEEE]/50  text-sm text-white px-2 py-1 w-28 rounded focus:outline-none"
+              onKeyDown={handleKeyPress}
             />
             <div className="flex items-center gap-1">
               <Image
@@ -114,6 +153,7 @@ export default function ViewStoryOutlet({ stories, loading }) {
                 src={"/icons/like-react.png"}
                 alt="raction"
                 className="w-5 h-5 cursor-pointer hover:scale-125"
+                onClick={() => postStoryAction("reacted", "like")}
               />
               <Image
                 width={20}
@@ -121,6 +161,7 @@ export default function ViewStoryOutlet({ stories, loading }) {
                 src={"/icons/love-react.png"}
                 alt="raction"
                 className="w-5 h-5 cursor-pointer hover:scale-125"
+                onClick={() => postStoryAction("reacted", "love")}
               />
               <Image
                 width={20}
@@ -128,6 +169,7 @@ export default function ViewStoryOutlet({ stories, loading }) {
                 src={"/icons/haha-react.png"}
                 alt="raction"
                 className="w-5 h-5 cursor-pointer hover:scale-125"
+                onClick={() => postStoryAction("reacted", "haha")}
               />
               <Image
                 width={20}
@@ -135,6 +177,7 @@ export default function ViewStoryOutlet({ stories, loading }) {
                 src={"/icons/wow-react.png"}
                 alt="raction"
                 className="w-5 h-5 cursor-pointer hover:scale-125"
+                onClick={() => postStoryAction("reacted", "wow")}
               />
               <Image
                 width={20}
@@ -142,6 +185,7 @@ export default function ViewStoryOutlet({ stories, loading }) {
                 src={"/icons/sad-react.png"}
                 alt="raction"
                 className="w-5 h-5 cursor-pointer hover:scale-125"
+                onClick={() => postStoryAction("reacted", "sad")}
               />
               <Image
                 width={20}
@@ -149,6 +193,7 @@ export default function ViewStoryOutlet({ stories, loading }) {
                 src={"/icons/angry-react.png"}
                 alt="raction"
                 className="w-5 h-5 cursor-pointer hover:scale-125"
+                onClick={() => postStoryAction("reacted", "angry")}
               />
             </div>
           </div>

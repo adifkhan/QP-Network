@@ -23,6 +23,7 @@ export default function CreateStory() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         user_id: auth?._id ?? "66878e4544edc6fbb5f548c1",
+        user_name: auth?.fullName ?? "Adif Khan",
         storyType,
         bgColor,
         privacyType,

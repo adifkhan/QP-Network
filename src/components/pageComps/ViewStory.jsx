@@ -25,7 +25,7 @@ export default function ViewStory({ userId }) {
   }, [userId]);
 
   return (
-    <main className="flex" style={{ minHeight: "500px", height: "calc(100vh - 60px)" }}>
+    <main className="flex" style={{ minHeight: "700px", height: "calc(100vh - 60px)" }}>
       <ViewStorySidebar />
       <ViewStoryOutlet stories={stories} loading={loading} />
     </main>

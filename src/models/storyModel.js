@@ -22,8 +22,9 @@ const storySchema = new mongoose.Schema(
     viewers: [
       {
         user_id: String,
+        userName: String,
         reactions: [String], // like, love, wow etc
-        comments: [String],
+        comment: String,
       },
     ],
   },

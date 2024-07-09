@@ -5,7 +5,7 @@ import React from "react";
 export default function ViewStorySidebar() {
   const { suggestions, loading } = useSuggestions();
   return (
-    <div className="bg-white text-neutral px-4 py-5 w-[300px] h-full  overflow-y-scroll">
+    <div className="bg-white text-neutral px-4 py-5 w-[350px] h-full  overflow-y-scroll">
       <h4 className="font-semibold text-xl">All stories</h4>
       <div className="flex flex-col gap-2 mt-3">
         {suggestions?.slice(0, 30)?.map((item, index) => (

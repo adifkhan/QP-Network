@@ -7,36 +7,84 @@ connect();
 export async function PATCH(request) {
   try {
     const reqBody = await request.json();
-    const { storyId, userId, actionType, reactType, commentText } = reqBody;
-    console.log(storyId, userId, actionType, reactType, commentText);
+    const { storyId, userId, userName, actionType, reactType, comment } = reqBody;
+
+    let result;
 
     switch (actionType) {
       case "reacted":
-        handleReact(actionType, storyId, userId);
-        break;
+        result = handleReact({ storyId, userId, reactType });
+        return NextResponse.json({ result, status: 200 }, { status: 200 });
       case "commented":
-        handleComment(actionType);
-        break;
+        result = await handleComment({ storyId, userId, userName, comment });
+        return NextResponse.json({ result, status: 200 }, { status: 200 });
       default:
-        const result = await handleViewed(storyId, userId);
+        result = await handleViewed({ storyId, userId, userName });
         return NextResponse.json({ result, status: 200 }, { status: 200 });
     }
-
-    // const stories = await Story.find({ user_id: userId });
-    // neglecting createdAt here for now
-    return NextResponse.json({ status: 200 }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
 
-const handleViewed = async (storyId, userId) => {
-  console.log(storyId, userId);
+const handleViewed = async ({ storyId, userId, userName }) => {
+  const story = await Story.findOne({ _id: storyId, "viewers.user_id": userId });
+
+  if (story) {
+    return story;
+  } else {
+    const newStory = await Story.updateOne(
+      { _id: storyId },
+      { $push: { viewers: { user_id: userId, userName } } },
+      { new: true }
+    );
+    return newStory;
+  }
 };
 
-const handleReact = async (actionType) => {
-  console.log(actionType);
+const handleReact = async ({ storyId, userId, reactType }) => {
+  const story = await Story.findOne({ _id: storyId, "viewers.user_id": userId });
+
+  if (story) {
+    const newStory = await Story.updateOne(
+      { _id: storyId, "viewers.user_id": userId },
+      {
+        $addToSet: {
+          "viewers.$.reactions": { $each: reactType },
+        },
+      },
+      { new: true }
+    );
+    return newStory;
+  } else {
+    const newStory = await Story.updateOne(
+      { _id: storyId },
+      { $push: { viewers: { user_id: userId, userName, reactions: [reactType] } } },
+      { new: true }
+    );
+    return newStory;
+  }
 };
-const handleComment = async (actionType) => {
-  console.log(actionType);
+
+const handleComment = async ({ storyId, userName, userId, comment }) => {
+  const story = await Story.findOne({ _id: storyId, "viewers.user_id": userId });
+  if (story) {
+    const newStory = await Story.updateOne(
+      { _id: storyId, "viewers.user_id": userId },
+      {
+        $set: {
+          "viewers.comment": comment,
+        },
+      },
+      { new: true }
+    );
+    return newStory;
+  } else {
+    const newStory = await Story.updateOne(
+      { _id: storyId },
+      { $push: { viewers: { user_id: userId, userName, comment } } },
+      { new: true }
+    );
+    return newStory;
+  }
 };
